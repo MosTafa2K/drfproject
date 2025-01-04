@@ -57,12 +57,24 @@ This repository serves as a starter template for projects built with Django and 
    pdm install
    ```
 
-3. **Run the development server:**
+3. **Run migrations:**
+   Apply the database migrations to set up the database schema:
+   ```bash
+   pdm run python src/backend/manage.py migrate
+   ```
+
+4. **Create a superuser:**
+   To access the Django admin interface, create a superuser account:
+   ```bash
+   pdm run python src/backend/manage.py createsuperuser
+   ```
+
+5. **Run the development server:**
    ```bash
    pdm run python src/backend/manage.py runserver
    ```
 
-4. **Start building your application!**
+6. **Start building your application!**
 
 ## Contribution
 
