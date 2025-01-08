@@ -11,23 +11,53 @@ This repository serves as a starter template for projects built with Django and 
 ## Project Structure
 
 ```plaintext
-.
-├── README.md       # Project documentation
-├── pdm.lock        # Dependency lock file
-├── pyproject.toml  # Dependency and project configuration
+├── LICENSE            # License file
+├── README.md          # Project documentation
+├── pdm.lock           # Dependency lock file
+├── pyproject.toml     # Dependency and project configuration
 ├── src
 │   ├── backend
-│   │   ├── core
+│   │   ├── api          # Handles REST API-specific logic and endpoints
 │   │   │   ├── __init__.py
-│   │   │   ├── asgi.py    # ASGI configuration
-│   │   │   ├── settings.py # Django settings
-│   │   │   ├── urls.py    # URL routing
-│   │   │   └── wsgi.py    # WSGI configuration
-│   │   ├── db.sqlite3     # SQLite database (default)
-│   │   └── manage.py      # Django management script
-│   └── frontend           # Placeholder for frontend code
+│   │   │   ├── admin.py
+│   │   │   ├── apps.py
+│   │   │   ├── migrations
+│   │   │   │   └── __init__.py
+│   │   │   ├── models.py
+│   │   │   ├── permissions.py
+│   │   │   ├── serializers.py
+│   │   │   ├── tests.py
+│   │   │   ├── urls.py
+│   │   │   └── views.py
+│   │   ├── blog         # Manages blog-related functionality and templates
+│   │   │   ├── __init__.py
+│   │   │   ├── admin.py
+│   │   │   ├── apps.py
+│   │   │   ├── migrations
+│   │   │   │   ├── 0001_initial.py
+│   │   │   │   ├── 0002_alter_article_thumb.py
+│   │   │   │   ├── 0003_remove_article_date.py
+│   │   │   │   ├── 0004_alter_article_slug.py
+│   │   │   │   └── __init__.py
+│   │   │   ├── models.py
+│   │   │   ├── templates
+│   │   │   │   └── blog
+│   │   │   │       └── article_list.html
+│   │   │   ├── tests.py
+│   │   │   ├── urls.py
+│   │   │   └── views.py
+│   │   ├── core          # Core module containing project-wide settings and configurations
+│   │   │   ├── __init__.py
+│   │   │   ├── asgi.py
+│   │   │   ├── settings.py
+│   │   │   ├── urls.py
+│   │   │   └── wsgi.py
+│   │   ├── db.sqlite3    # SQLite database (default)
+│   │   └── manage.py     # Django management script
+│   └── frontend          # Placeholder for frontend code
+├── struct.txt           # Detailed structure of the project
 └── tests
-    └── __init__.py        # Placeholder for test cases
+    └── __init__.py      # Placeholder for test cases
 ```
 
 ## Installed Packages
