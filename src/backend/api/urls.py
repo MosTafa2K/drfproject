@@ -31,13 +31,23 @@ urlpatterns = [
     ),
     path(
         "users/me/",
-        views.UserDetailView.as_view(),
-        name="user-detail",
+        views.SelfUserDetailView.as_view(),
+        name="self-user-detail",
     ),
     path(
         "users/signup/",
         views.UserCreateAPIView.as_view(),
         name="user-signup",
+    ),
+    path(
+        "users/",
+        views.UsersList.as_view(),
+        name="user-list",
+    ),
+    path(
+        "users/<int:pk>",
+        views.UserDetailView.as_view(),
+        name="user-detail",
     ),
     # path(
     #     "users/me/delete/",

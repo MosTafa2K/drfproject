@@ -38,6 +38,18 @@ class UserSerializer(rest_serializers.ModelSerializer):
         fields = "__all__"
 
 
+class UpgradeUserSerializer(rest_serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["is_staff", "is_superuser"]
+
+
+class UserUpdateSerializer(rest_serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["email", "first_name", "last_name"]
+
+
 class UserCreateSerializer(rest_serializers.ModelSerializer):
 
     class Meta:

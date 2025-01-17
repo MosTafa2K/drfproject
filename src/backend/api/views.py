@@ -6,10 +6,11 @@ from rest_framework.generics import (
     RetrieveAPIView,
     RetrieveDestroyAPIView,
     RetrieveUpdateAPIView,
-    DestroyAPIView,
+    RetrieveUpdateDestroyAPIView,
 )
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 from blog.models import Article
 from .serializers import (
     ArticleSerializer,
@@ -18,16 +19,34 @@ from .serializers import (
     ArticleDeleteSerializer,
     ArticleDetailSerializer,
     UserSerializer,
+    UserUpdateSerializer,
+    UpgradeUserSerializer,
+)
+from .permissions import (
+    IsStaffOrReadOnly,
+    IsSuperUser,
+    IsSuperUserOrStaffReadOnly,
 )
 
 
 # Create your views here.
-class UserDetailView(RetrieveAPIView):
-    serializer_class = UserSerializer
+class SelfUserDetailView(RetrieveUpdateAPIView):
+    serializer_class = UserUpdateSerializer
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
         return self.request.user
+
+
+class UserDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UpgradeUserSerializer
+    permission_classes = [IsSuperUserOrStaffReadOnly]
+
+
+class UsersList(ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 # class UserDeletelView(DestroyAPIView):
@@ -49,7 +68,8 @@ class UserCreateAPIView(CreateAPIView):
 class ArticleListView(ListAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleDetailSerializer
-
+    # authentication_classes = [SessionAuthentication]
+    
 
 class ArticleDetailView(RetrieveAPIView):
     queryset = Article.objects.all()
