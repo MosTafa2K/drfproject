@@ -15,17 +15,17 @@ urlpatterns = [
         name="article-create",
     ),
     path(
-        "articles/<slug:slug>/",
+        "articles/<int:pk>/",
         views.ArticleDetailView.as_view(),
         name="article-detail",
     ),
     path(
-        "articles/<slug:slug>/delete/",
+        "articles/<int:pk>/delete/",
         views.ArticleDelete.as_view(),
         name="article-delete",
     ),
     path(
-        "articles/<slug:slug>/update/",
+        "articles/<int:pk>/update/",
         views.ArticleUpdate.as_view(),
         name="article-update",
     ),
